@@ -1,4 +1,5 @@
 from Cheetah.Template import Template
+from subprocess import call
 
 # Python Cheetah template for French Phrase Flashcards
 
@@ -24,9 +25,7 @@ templateDef = """
 
 \\begin{frame}
   \\begin{quotation}
-    \\Huge Useful\\\\
-    French\\\\
-    Phrases
+   {\\fontsize{\\textheight}{\\textheight}\\selectfont $title }
   \\end{quotation}
 \\end{frame}
 
@@ -58,7 +57,8 @@ templateDef = """
 \\end{document}
 """
 
-namespace={'dict': [
+namespace={'title': 'Useful French Phrases',
+    'dict': [
     {'english': 'Thank you', 'french': 'Merci'},
     {'english': 'Thank you very much', 'french': 'Merci beaucoup'},
     {'english': 'Good day', 'french': 'Bonjour'},
@@ -142,6 +142,67 @@ namespace={'dict': [
     {'english': "Here", 'french': "Tiens", 'note': 'informal; handing something'},
     {'english': "What's new?", 'french': "Quoi de neuf ?"},
     {'english': "Not much", 'french': "Pas grand-chose"},
+    {'english': "my pet", 'french': "mon animal"},
+    {'english': "I have a pet", 'french': "J'ai un animal"},
+    {'english': "a dog", 'french': "un chien"},
+    {'english': "a cat", 'french': "un chat"},
+    {'english': "a tortoise", 'french': "une tortue"},
+    {'english': "a rabbit", 'french': "un lapin"},
+    {'english': "a bird", 'french': "un oiseau"},
+    {'english': "a fish", 'french': "un poisson"},
+    {'english': "a hamster", 'french': "un hamster"},
+    {'english': "a mouse", 'french': "un souris"},
+    {'english': "a horse", 'french': "un cheval"},                                
 ]}
-t = Template(templateDef, searchList=[namespace])
-print t
+
+phrases = 'phrases.tex'
+open(phrases, 'w').write(str(Template(templateDef, searchList=[namespace])))
+call(["pdflatex", phrases])
+
+namespace = {'title': 'Useful French Words',
+    'dict': [
+        {'english': 'Blue', 'french': 'bleu (e)'},
+        {'english': 'green', 'french': 'vert (e)'},
+        {'english': 'purple', 'french': 'violet (e)'},
+        {'english': 'grey', 'french': 'gris (e)'},
+        {'english': 'white', 'french': 'blanc (e)'},
+        {'english': 'red', 'french': 'rouge'},
+        {'english': 'orange', 'french': 'orange'},
+        {'english': 'pink', 'french': 'rose'},
+        {'english': 'brown', 'french': 'marron'},
+        {'english': 'yellow', 'french': 'jaune'},
+        {'english': 'zero', 'french': "z\\'ero"},
+        {'english': 'one', 'french': "un"},
+        {'english': 'two', 'french': "deux"},
+        {'english': 'three', 'french': "trois"},
+        {'english': 'four', 'french': 'quatre'},
+        {'english': 'five', 'french': 'cinq'},
+        {'english': 'six', 'french': 'six'},
+        {'english': 'seven', 'french': 'sept'},
+        {'english': 'eight', 'french': 'huit'},
+        {'english': 'nine', 'french': 'neuf'},
+        {'english': 'ten', 'french': 'dix'},
+        {'english': 'eleven', 'french': 'onze'},
+        {'english': 'twelve', 'french': 'douze'},
+        {'english': 'thirteen', 'french': 'treize'},
+        {'english': 'fourteen', 'french': 'quatorze'},
+        {'english': 'fifteen', 'french': 'quinze'},
+        {'english': 'sixteen', 'french': 'seize'},
+        {'english': 'seventeen', 'french': 'dix-sept'},
+        {'english': 'eighteen', 'french': 'dix-huit'},
+        {'english': 'nineteen', 'french': 'dix-neuf'},
+        {'english': 'twenty', 'french': 'vingt'},
+        {'english': 'thirty', 'french': 'trente'},
+        {'english': 'fourty', 'french': 'quarante'},
+        {'english': 'fifty', 'french': 'cinquante'},
+        {'english': 'sixty', 'french': 'soixante'},
+        {'english': 'seventy', 'french': 'soixante-dix'},
+        {'english': 'eighty', 'french': 'quatre-vingts'},
+        {'english': 'ninety', 'french': 'quatre-vingt-dix'},
+        {'english': 'one hundred', 'french': 'cent'},
+    ]
+}
+     
+words = 'words.tex'
+open(words, 'w').write(str(Template(templateDef, searchList=[namespace])))
+call(["pdflatex", words])

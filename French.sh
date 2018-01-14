@@ -1,3 +1,2 @@
 #!/bin/sh
-python French.py > French.tex
-pdflatex French.tex
+python French.py && rm -f *.aux *.log *.nav *.out *.snm *.toc
