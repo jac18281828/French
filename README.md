@@ -1,5 +1,5 @@
 # French
-Python Cheetah Template for generating French Language Flashcards - Useful French Phrases
+Python Cheetah Template for generating French Language Beemer Flashcards - Useful French Phrases
 
 `$ sh French.sh`
 
